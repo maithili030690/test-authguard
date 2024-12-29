@@ -1,0 +1,20 @@
+<!-- <p>{{userInfo|json}}</p> -->
+<form [formGroup]="userForm" (ngSubmit)="onUserAdd()">
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input id="userName" class="form-control" type="text" formControlName="userName">
+    </div>
+    <div class="form-group">
+        <label for="userRole">User Role</label>
+        <select id="userRole" class="form-control" type="text" formControlName="userRole">
+            <option value="Candidate">Candidate</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+   <button *ngIf="!isInEditMode" type="submit" class="btn btn-block" mat-raised-button color="primary">Add User</button>
+
+   <button 
+    [disabled]="updateBtnFlag"
+   (click)="onUserUpdate()"
+   *ngIf="isInEditMode" type="button" class="btn btn-block" mat-raised-button color="primary">Update User</button>
+</form>

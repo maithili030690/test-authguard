@@ -1,0 +1,14 @@
+<h1 class="fairtitle text-uppercase text-white mb-2 p-3">Fairs</h1>
+<div class="row">
+    <div class="col-md-4">
+      <app-fair-card
+      [selectedfairId]="selectedFairId"
+      (click)="selectedFairId =fair.fairId"
+      [fairObj]="fair"
+      *ngFor="let fair of fairs"
+      ></app-fair-card>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

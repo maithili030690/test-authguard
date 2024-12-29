@@ -1,0 +1,15 @@
+<!-- <p>{{fairObj|json}}</p> -->
+<div class="card mb-4 faircard"
+[routerLink]="fairObj.fairId"
+[ngClass]="{
+    'active':selectedfairId===fairObj.fairId
+}"
+>
+    <div class="card-body">
+        <h2 class="text-uppercase">{{fairObj.fairName}}</h2>
+        <div class="typeanddate">
+            <p class="mb-0">Event Type : {{fairObj.type}}</p>
+            <p class="mb-0">Date:{{(fairObj.startDate*1000)|date}}</p>
+        </div>
+    </div>
+</div>

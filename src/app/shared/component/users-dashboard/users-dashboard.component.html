@@ -1,0 +1,31 @@
+<!-- <p>{{usersInfo|json}}</p> -->
+<ng-container *ngIf="usersInfo.length>0;else nouser">
+<div class="row">
+    <div class="col-md-12 my-4 text-right">
+        <button 
+        routerLink="adduser"
+        mat-raised-button color="accent">Add User</button>
+    </div>
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li 
+            [ngClass]="{
+                'active':selectedUserId===users.userId
+            }"
+            (click)="onUserClick(users)"
+            [routerLink]="[users.userId]"
+            [queryParams]="{userRole:users.userRole}"
+            *ngFor="let users of usersInfo"
+            class="list-group-item">
+            {{users.userName}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+</ng-container>
+<ng-template #nouser>
+    <p class="alert alert-info">no user</p>
+</ng-template>

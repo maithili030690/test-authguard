@@ -1,0 +1,30 @@
+<ng-container *ngIf="products.length>0;else noProd">
+<div class="row">
+    <div class="col-md-12 my-4 text-right">
+        <button 
+        routerLink="addproduct"
+        mat-raised-button color="accent">Add Product</button>
+    </div>
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li 
+            [ngClass]="{
+                'active':prod.pid===selectedProdId
+            }"
+            (click)="onProdClick(prod)"
+            [routerLink]="[prod.pid]"
+            [queryParams]="{canReturn:prod.canReturn}"
+            *ngFor="let prod of products"
+            class="list-group-item">
+            {{prod.pname}} {{prod.pid}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+</ng-container>
+<ng-template #noProd>
+    <p class="alert alert-info">No Products</p>
+</ng-template>

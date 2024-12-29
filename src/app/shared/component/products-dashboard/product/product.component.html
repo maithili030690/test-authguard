@@ -1,0 +1,15 @@
+
+<ng-container *ngIf="productObj">
+<p>This is Product <strong>{{productObj.pname}}</strong> with status <strong>{{productObj.pstatus}}</strong></p>
+
+<button
+routerLink="edit"
+[queryParamsHandling]="'preserve'"
+mat-raised-button color="primary">Edit Product</button>
+
+<button
+(click)="onProuctRemove()"
+mat-raised-button color="warn" class="ml-4">Remove Product</button>
+
+
+</ng-container>

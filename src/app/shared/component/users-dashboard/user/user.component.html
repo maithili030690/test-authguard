@@ -1,0 +1,18 @@
+
+<ng-container *ngIf="userInfo">
+<p>The User Name is <strong>{{userInfo.userName}}</strong> with id <strong>{{userInfo.userId}}</strong></p>
+<!-- {{userInfo|json}} -->
+<button 
+(click)="onEditUser()"
+mat-raised-button color="primary">
+    Edit User
+</button>
+
+
+<button 
+(click)="onUserRemove()"
+mat-raised-button color="warn" class="ml-3">
+    Remove User
+</button>
+
+</ng-container>
