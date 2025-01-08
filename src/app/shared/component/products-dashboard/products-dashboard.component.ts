@@ -17,18 +17,33 @@ selectedProdId!:string;
     private _productService :ProductService,
     private _route:ActivatedRoute,
     private _router:Router
-  ) { }
+
+  ) {
+    console.log(this._route)
+    this._route.data
+    .subscribe(res=>{
+      console.log(res['productData'])
+      this.products =(res['productData'])
+      this.selectedProdId = this.products[0].pid
+      this._router.navigate([this.products[0].pid],{
+        relativeTo:this._route,
+        queryParams:{
+          canReturn :this.products[0].canReturn
+        }
+      })
+    })
+   }
 
   ngOnInit(): void {
-    this.products = this._productService.fetchAllProducts()
+    // this.products = this._productService.fetchAllProducts()
  
 
   
-      this.selectedProdId=this.products[0].pid
-      this._router.navigate([this.products[0].pid],{
-        relativeTo:this._route,
-        queryParams:{canReturn:this.products[0].canReturn}
-      })
+    //   this.selectedProdId=this.products[0].pid
+    //   this._router.navigate([this.products[0].pid],{
+    //     relativeTo:this._route,
+    //     queryParams:{canReturn:this.products[0].canReturn}
+    //   })
   }
   onProdClick(prod:Iproduct){
     console.log(prod)

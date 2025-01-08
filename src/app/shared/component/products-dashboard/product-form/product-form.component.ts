@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IcanDeactivateComp } from 'src/app/shared/models/canDeactivate';
 import { Iproduct } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UuidService } from 'src/app/shared/services/uuid.service';
@@ -10,7 +12,7 @@ import { UuidService } from 'src/app/shared/services/uuid.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit,IcanDeactivateComp {
 productId!:string;
 productObj!:Iproduct;
 productForm!:FormGroup;
@@ -21,6 +23,7 @@ updateBtnFlag:boolean =false;
     private _productService :ProductService,
     private _uuidService:UuidService
   ) { }
+
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -72,5 +75,13 @@ updateBtnFlag:boolean =false;
       this.productForm.reset()
       this._productService.updatedProd(updatedObj)
     }
+  }
+  canDeactivate(){
+    // return false
+    if(this.productForm.dirty){
+      let getConfirmation = confirm(`Are you sure you want to discard the changes??`)
+      return getConfirmation
+    }
+    return true
   }
 }

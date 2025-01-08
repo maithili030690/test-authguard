@@ -14,7 +14,13 @@ productObj!:Iproduct;
   constructor(
     private _route:ActivatedRoute,
     private _productService:ProductService
-  ) { }
+  ) {
+    this._route.data
+    .subscribe(res=>{
+      console.log(res)
+      this.productObj = res['productObj']
+    })
+   }
 
   ngOnInit(): void {
     // this.productId = this._route.snapshot.params['productId']
@@ -22,16 +28,16 @@ productObj!:Iproduct;
     //   this.productObj = this._productService.fetchProduct(this.productId)
     // }
 
-    this._route.params
-    .subscribe((params:Params)=>{
-      console.log(params)
-      this.productId =params['productId']
-      if(this.productId){
-        this.productObj = this._productService.fetchProduct(this.productId)
-        console.log(this.productObj)
-      }
+    // this._route.params
+    // .subscribe((params:Params)=>{
+    //   console.log(params)
+    //   this.productId =params['productId']
+    //   if(this.productId){
+    //     this.productObj = this._productService.fetchProduct(this.productId)
+    //     console.log(this.productObj)
+    //   }
 
-    })
+    // })
   }
   onProuctRemove(){
     let getConfirm = confirm(`Are You Sure , You Want to Remove this Product`)

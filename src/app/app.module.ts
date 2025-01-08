@@ -20,6 +20,7 @@ import { ProductFormComponent } from './shared/component/products-dashboard/prod
 import { FairCardComponent } from './shared/component/fairs/fair-card/fair-card.component';
 import { FairDetailsComponent } from './shared/component/fairs/fair-details/fair-details.component';
 import { AuthComponent } from './shared/component/auth/auth.component';
+import { AdminDashboardComponent } from './shared/component/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthComponent } from './shared/component/auth/auth.component';
     ProductFormComponent,
     FairCardComponent,
     FairDetailsComponent,
-    AuthComponent
+    AuthComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

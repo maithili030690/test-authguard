@@ -23,6 +23,7 @@ selectedUserId!:string;
     this._router.navigate([this.usersInfo[0].userId],{
       relativeTo:this._routes
     })
+   
   }
   onUserClick(users:Iuser){
     console.log(users)

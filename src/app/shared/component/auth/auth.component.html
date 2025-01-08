@@ -1,10 +1,10 @@
 <main class="main">
     <div class="card">
         <div class="card-body">
-            <div>
+            <ng-container *ngIf="allreadyHasAccount">
                 <!-- loginform -->
                  <h2>LogIn</h2>
-                 <form>
+                 <form [formGroup]="loginForm"(ngSubmit)="onLogin()">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="email" type="text" formControlName="email" class="form-control">
@@ -15,11 +15,14 @@
                     </div>
                     <button mat-raised-button color="primary" class="btn btn-block">LogIn</button>
                  </form>
-            </div>
-            <div>
+                 <!-- <a href="javascript:;" 
+                 (click)="allreadyHasAccount =!allreadyHasAccount"
+                 class="btn btn-link">Dont Have Account Yet</a> -->
+            </ng-container>
+            <ng-container *ngIf="!allreadyHasAccount">
                 <!-- signin Form-->
-                 <h2>signIn</h2>
-                 <form>
+                 <h2>SignUp</h2>
+                 <form [formGroup]="signUpForm">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="email" type="text" formControlName="email" class="form-control">
@@ -32,9 +35,16 @@
                         <label for="confirmpassword">Confirm Password</label>
                         <input id="confirmpassword" type="text" formControlName="confirmpassword" class="form-control">
                     </div>
-                    <button mat-raised-button color="primary" class="btn btn-block">LogIn</button>
+                    <button mat-raised-button color="primary" class="btn btn-block">SignUp</button>
                  </form>
-            </div>
+                 <!-- <a href="javascript:;" 
+                 (click)="allreadyHasAccount =!allreadyHasAccount"
+                 class="btn btn-link">Already Have Account</a> -->
+            </ng-container>
+            <hr>
+            <a href="javascript:;" 
+            (click)="allreadyHasAccount =!allreadyHasAccount"
+            class="btn btn-link">{{allreadyHasAccount ? 'Dont Have Account' :'Already Have Account' }}</a>
         </div>
     </div>
 </main>

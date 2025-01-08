@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IcanDeactivateComp } from 'src/app/shared/models/canDeactivate';
 import { Iuser } from 'src/app/shared/models/users';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { UuidService } from 'src/app/shared/services/uuid.service';
@@ -10,7 +12,7 @@ import { UuidService } from 'src/app/shared/services/uuid.service';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent implements OnInit,IcanDeactivateComp {
 userId!:string;
 userInfo!:Iuser;
 userForm!:FormGroup;
@@ -24,6 +26,7 @@ updateBtnFlag :boolean = false;
     private _uuidServce:UuidService,                                                       
     private _router:Router
   ) { }
+
 
   ngOnInit(): void {
 
@@ -74,5 +77,14 @@ updateBtnFlag :boolean = false;
     console.log(updatedObj)
     this.userForm.reset()
     this._userService.updateUser(updatedObj)
+  }
+
+  canDeactivate(){
+    if(this.userForm.dirty){
+      return confirm(`Are you sure you want to discard the changes`)
+    }
+    return false
+
+
   }
 }

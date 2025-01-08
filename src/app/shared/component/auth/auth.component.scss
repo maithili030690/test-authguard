@@ -1,0 +1,15 @@
+.main{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: blueviolet;
+    .card{
+        width:600px;
+        max-width: 90%;
+    }
+}

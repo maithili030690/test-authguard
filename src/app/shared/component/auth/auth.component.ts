@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AuthComponent implements OnInit {
 loginForm!:FormGroup;
 signUpForm!:FormGroup;
-  constructor() { }
+allreadyHasAccount:boolean=true;
+  constructor(
+    private _authService:AuthService
+  ) { }
 
   ngOnInit(): void {
     this.createLogInForm()
@@ -28,5 +32,12 @@ signUpForm!:FormGroup;
       password:new FormControl(null,[Validators.required]),
       confirmpassword:new FormControl(null,[Validators.required]),
     })
+  }
+  onLogin(){
+    if(this.loginForm.valid){
+      let obj  = this.loginForm.value
+      // console.log(obj)
+      this._authService.onAppLogin(obj)
+    }
   }
 }
